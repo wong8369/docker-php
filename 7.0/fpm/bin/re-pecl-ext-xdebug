@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pecl install xdebug-2.7.2 \
+    && docker-php-ext-enable xdebug

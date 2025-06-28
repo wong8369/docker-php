@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-pecl install redis \
+pecl install redis-2.2.8 \
     && docker-php-ext-enable redis
