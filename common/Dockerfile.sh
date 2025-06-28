@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-NO_HOST=$(NO_HOST=$(ping -c 1 rimelek.php.apt-cacher-ng 2>/dev/null | tail -n1 | wc -l)) \
- && if [ "${NO_HOST}" == "0" ]; then \
-        echo 'Acquire::HTTP::Proxy "http://rimelek.php.apt-cacher-ng:3142";' >> /etc/apt/apt.conf.d/01rimelek.php.apt-cacher-ng \
-            && echo 'Acquire::HTTPS::Proxy "false";' >> /etc/apt/apt.conf.d/01rimelek.php.apt-cacher-ng; \
-    fi \
- && PHP_EXT_GROUP_NONE="" \
+PHP_EXT_GROUP_NONE="" \
  && for PHP_EXT_GROUP__CURRENT in $(echo ${PHP_EXT_GROUP} | tr ",;" " "); do \
         PHP_EXT_GROUP__CURRENT=${PHP_EXT_GROUP__CURRENT^^}; \
         PHP_EXT_GROUP__VAR='PHP_EXT_GROUP_'${PHP_EXT_GROUP__CURRENT}; \
@@ -39,7 +34,4 @@ NO_HOST=$(NO_HOST=$(ping -c 1 rimelek.php.apt-cacher-ng 2>/dev/null | tail -n1 |
         if [ "${EXCODE}" -gt 0 ]; then \
             exit ${EXCODE}; \
         fi; \
-    done \
- && if [ -f /etc/apt/apt.conf.d/01rimelek.php.apt-cacher-ng ]; then \
-        unlink /etc/apt/apt.conf.d/01rimelek.php.apt-cacher-ng; \
-    fi
+    done

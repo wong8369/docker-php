@@ -88,7 +88,7 @@ if [ "${VERSION}" != "" ] && [ -d build/${VERSION} ]; then
     
     FIX_APT_STR=""
     if [[ "$TAG" == "5.6-fpm" || "$TAG" == "7.0-fpm" ]]; then
-      FIX_APT_STR='RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list'
+      FIX_APT_STR="RUN echo \"deb http://archive.debian.org/debian stretch main\" > /etc/apt/sources.list \\\&\\\& apt-get update \\\&\\\& apt-get install -y --allow-unauthenticated debian-archive-keyring"
     fi
     dockerfile_content="$(
       echo "$dockerfile_content" \
